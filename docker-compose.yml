@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  web:
+    build: .
+    command: ["bundle", "exec", "rails", "server", "-p", "80", "-b", "0.0.0.0"]
+    environment:
+      - LANG=C.UTF-8
+    volumes:
+      - .:/app:delegated
+      - rails5_saml_test:/bundle:cached
+    ports:
+      - "3130:80"
+
+volumes:
+  rails5_saml_test:
