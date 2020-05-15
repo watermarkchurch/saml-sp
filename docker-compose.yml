@@ -9,7 +9,7 @@ services:
       - .:/app:delegated
       - rails5_saml_test:/bundle:cached
     ports:
-      - "3130:80"
+      - "3120:80"
 
 volumes:
   rails5_saml_test:
