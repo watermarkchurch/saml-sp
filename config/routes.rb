@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       get :sso
       post :acs
       get :metadata
-      get :logout
+      match :logout, via: %i[get post]
     end
   end
 
