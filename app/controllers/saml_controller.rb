@@ -91,16 +91,16 @@ class SamlController < ApplicationController
     logger.info "LogoutResponse is: #{logout_response.response.to_s}"
 
     # Validate the SAML Logout Response
-    if not logout_response.validate
-      error_msg = "The SAML Logout Response is invalid.  Errors: #{logout_response.errors}"
-      logger.error error_msg
-      render :inline => error_msg
-    else
+    if logout_response.validate
       # Actually log out this session
       if logout_response.success?
         logger.info "Delete session for '#{session[:nameid]}'"
         reset_session
       end
+    else
+      error_msg = "The SAML Logout Response is invalid.  Errors: #{logout_response.errors}"
+      logger.error error_msg
+      render :inline => error_msg
     end
   end
 
