@@ -2,28 +2,21 @@
   <p>NameID: <%= session[:nameid] %></p>
 
   <% if @attrs.any? %>
-    <p>Received the following attributes in the SAML Response:</p>
+    <p>Received the following attributes from the SAML IDP:</p>
     <table><thead><th>Name</th><th>Values</th></thead><tbody>
 
     <% @attrs.each do |key,attr_value|  %>
-
-      <tr><td><%= key %></td>
-      <td>
-      <% if attr_value.any? %>
-          <ul>
-          <% attr_value.each do |val| %>
-              <li><%= val %></li>
-          <% end %>
-          </ul>
-      <% end %>
-      </td></tr>
+      <tr>
+        <td><%= key %></td>
+        <td><%= Array(*attr_value).to_sentence if attr_value.present? %></td>
+      </tr>
     <% end %>
     </tbody>
     </table>
   <% end %>
+
   <p><%= link_to "Logout", :action => "logout" %></p>
   <p><%= link_to "Single Logout", :action => "logout", :slo => '1' %></p>
-
 <% else %>
   <p><%= link_to "Login", :action=>"sso"%></p>
 <% end -%>

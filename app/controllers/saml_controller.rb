@@ -2,7 +2,7 @@ class SamlController < ApplicationController
   skip_before_action :verify_authenticity_token, :only => [:acs, :logout]
 
   def index
-    @attrs = {}
+    @attrs = session[:attributes] || {}
   end
 
   def sso
