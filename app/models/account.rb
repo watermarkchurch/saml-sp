@@ -15,7 +15,7 @@ class Account < Struct.new(:url_base, :idp_url, :idp_cert)
       settings.assertion_consumer_logout_service_url = url_base + "/saml/logout"
 
       # IdP section
-      settings.idp_entity_id          = "#{idp_url}/saml"
+      settings.idp_entity_id          = "#{idp_url}/saml/metadata"
       settings.idp_sso_target_url     = "#{idp_url}/saml/auth"
       settings.idp_slo_target_url     = "#{idp_url}/saml/logout"
       settings.idp_cert               = idp_cert
